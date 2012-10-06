@@ -9,8 +9,8 @@ type Stx3 struct {
 	VehicleData struct {
 		XMLName  xml.Name `xml:"vehicle_data"`
 		Vehicles struct {
-			XMLName xml.Name `xml:"vehicles"`
-			Vehicle []Vehicle
+			XMLName xml.Name  `xml:"vehicles"`
+			Vehicle []Vehicle `xml:"vehicle"`
 		}
 	}
 }
@@ -41,6 +41,12 @@ type Vehicle struct {
 			ExtraUrban string   `xml:"extra_urban"`
 			Combined   string   `xml:"combined"`
 		}
+		Electric struct {
+			XMLName    xml.Name `xml:"electric"`
+			Urban      string   `xml:"urban"`
+			ExtraUrban string   `xml:"extra_urban"`
+			Combined   string   `xml:"combined"`
+		}
 	}
 	Mileage             string `xml:"mileage"`
 	InitialRegistration string `xml:"initial_registration"`
@@ -48,22 +54,33 @@ type Vehicle struct {
 	LicenseNumber       string `xml:"license_number"`
 	Prices              struct {
 		XMLName xml.Name `xml:"prices"`
-		Price   struct {
-			XMLName  xml.Name `xml:"price"`
-			Type     string   `xml:"type"`
-			Currency string   `xml:"currency"`
-			Value    string   `xml:"value"`
-		}
+		Price   []Price  `xml:"price"`
 	}
 	Media struct {
 		XMLName xml.Name `xml:"media"`
 		Images  struct {
 			XMLName xml.Name `xml:"images"`
-			Image   []Image
+			Image   []Image  `xml:"image"`
 		}
 	}
-	// KerbWeight string `xml:"kerb_weight"`
-	// Seats      string `xml:"seats"`
+	KerbWeight string `xml:"kerb_weight"`
+	Seats      string `xml:"seats"`
+	Equipments struct {
+		XMLName   xml.Name    `xml:"equipments"`
+		Equipment []Equipment `xml:"equipment"`
+	}
+}
+
+type Price struct {
+	XMLName  xml.Name `xml:"price"`
+	Type     string   `xml:"type"`
+	Currency string   `xml:"currency"`
+	Value    string   `xml:"value"`
+}
+
+type Equipment struct {
+	XMLName xml.Name `xml:"equipment"`
+	Text    string   `xml:"text"`
 }
 
 type Image struct {
