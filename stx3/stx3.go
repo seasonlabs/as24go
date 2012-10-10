@@ -21,8 +21,11 @@ type Vehicle struct {
 	Body            string `xml:"body"`
 	Brand           string `xml:"brand"`
 	Model           string `xml:"model"`
+	Version         string `xml:"version"`
 	BodyColor       string `xml:"body_color" bson:"body_color"`
 	BodyColorgroup  string `xml:"body_colorgroup" bson:"body_colorgroup"`
+	InteriorColor   string `xml:"interior_color" bson:"interior_color"`
+	Covering        string `xml:"covering"`
 	Doors           string `xml:"doors"`
 	GearType        string `xml:"gear_type" bson:"gear_type"`
 	Gears           string `xml:"gears"`
