@@ -67,7 +67,7 @@ type Equipment struct {
 }
 
 type Image struct {
-	Local string `xml:"local" bson:"file_uid"`
+	Local string `xml:"local"`
 }
 
 type Consumption struct {
