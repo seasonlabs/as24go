@@ -26,18 +26,18 @@ type Vehicle struct {
 	BodyColorgroup  string `xml:"body_colorgroup" bson:"body_colorgroup"`
 	InteriorColor   string `xml:"interior_color" bson:"interior_color"`
 	Covering        string `xml:"covering"`
-	Doors           string `xml:"doors"`
+	Doors           int    `xml:"doors"`
 	GearType        string `xml:"gear_type" bson:"gear_type"`
-	Gears           string `xml:"gears"`
+	Gears           int    `xml:"gears"`
 	FuelType        string `xml:"fuel_type" bson:"fuel_type"`
-	Kilowatt        string `xml:"kilowatt"`
-	Cylinder        string `xml:"cylinder"`
-	Capacity        string `xml:"capacity"`
+	Kilowatt        int    `xml:"kilowatt"`
+	Cylinder        int    `xml:"cylinder"`
+	Capacity        int    `xml:"capacity"`
 	Consumption     struct {
 		Liquid   Consumption `xml:"liquid"`
 		Electric Consumption `xml:"electric"`
 	} `xml:"consumption"`
-	Mileage             string `xml:"mileage"`
+	Mileage             int    `xml:"mileage"`
 	InitialRegistration string `xml:"initial_registration" bson:"initial_registration"`
 	Notes               string `xml:"notes"`
 	LicenseNumber       string `xml:"license_number" bson"license_number"`
@@ -49,8 +49,8 @@ type Vehicle struct {
 			Image []Image `xml:"image"`
 		} `xml:"images"`
 	} `xml:"media"`
-	KerbWeight string `xml:"kerb_weight" bson:"kerb_weight"`
-	Seats      string `xml:"seats"`
+	KerbWeight int `xml:"kerb_weight" bson:"kerb_weight"`
+	Seats      int `xml:"seats"`
 	Equipments struct {
 		Equipment []Equipment `xml:"equipment"`
 	} `xml:"equipments"`
@@ -59,7 +59,7 @@ type Vehicle struct {
 type Price struct {
 	Type     string `xml:"type"`
 	Currency string `xml:"currency"`
-	Value    string `xml:"value"`
+	Value    int    `xml:"value"`
 }
 
 type Equipment struct {
@@ -74,6 +74,14 @@ type Consumption struct {
 	Urban      string `xml:"urban"`
 	ExtraUrban string `xml:"extra_urban" bson:"extra_urban"`
 	Combined   string `xml:"combined"`
+}
+
+func NewStx3(inputXml []byte) (result Stx3, err error) {
+	if err = xml.Unmarshal(inputXml, &result); err != nil {
+		return result, err
+	}
+
+	return result, nil
 }
 
 func (stx3 *Stx3) Marshal() ([]byte, error) {
