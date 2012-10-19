@@ -26,18 +26,18 @@ type Vehicle struct {
 	BodyColorgroup  string `xml:"body_colorgroup" bson:"body_colorgroup"`
 	InteriorColor   string `xml:"interior_color" bson:"interior_color"`
 	Covering        string `xml:"covering"`
-	Doors           int    `xml:"doors"`
+	Doors           int    `xml:"doors,omitempty"`
 	GearType        string `xml:"gear_type" bson:"gear_type"`
-	Gears           int    `xml:"gears"`
+	Gears           int    `xml:"gears,omitempty"`
 	FuelType        string `xml:"fuel_type" bson:"fuel_type"`
-	Kilowatt        int    `xml:"kilowatt"`
-	Cylinder        int    `xml:"cylinder"`
-	Capacity        int    `xml:"capacity"`
+	Kilowatt        int    `xml:"kilowatt,omitempty"`
+	Cylinder        int    `xml:"cylinder,omitempty"`
+	Capacity        int    `xml:"capacity,omitempty"`
 	Consumption     struct {
 		Liquid   Consumption `xml:"liquid"`
 		Electric Consumption `xml:"electric"`
 	} `xml:"consumption"`
-	Mileage             int    `xml:"mileage"`
+	Mileage             int    `xml:"mileage,omitempty"`
 	InitialRegistration string `xml:"initial_registration" bson:"initial_registration"`
 	Notes               string `xml:"notes"`
 	LicenseNumber       string `xml:"license_number" bson"license_number"`
@@ -49,8 +49,8 @@ type Vehicle struct {
 			Image []Image `xml:"image"`
 		} `xml:"images"`
 	} `xml:"media"`
-	KerbWeight int `xml:"kerb_weight" bson:"kerb_weight"`
-	Seats      int `xml:"seats"`
+	KerbWeight int `xml:"kerb_weight,omitempty" bson:"kerb_weight,omitempty"`
+	Seats      int `xml:"seats,omitempty"`
 	Equipments struct {
 		Equipment []Equipment `xml:"equipment"`
 	} `xml:"equipments"`
@@ -59,7 +59,7 @@ type Vehicle struct {
 type Price struct {
 	Type     string `xml:"type"`
 	Currency string `xml:"currency"`
-	Value    int    `xml:"value"`
+	Value    int    `xml:"value,omitempty"`
 }
 
 type Equipment struct {
