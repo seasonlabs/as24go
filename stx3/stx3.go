@@ -30,9 +30,9 @@ type Vehicle struct {
 	GearType         string `xml:"gear_type" bson:"gear_type"`
 	Gears            string `xml:"gears"`
 	FuelType         string `xml:"fuel_type" bson:"fuel_type"`
+	Capacity         string `xml:"capacity"`
 	Kilowatt         string `xml:"kilowatt"`
 	Cylinder         string `xml:"cylinder"`
-	Capacity         string `xml:"capacity"`
 	Consumption      struct {
 		Liquid   Consumption `xml:"liquid"`
 		Electric Consumption `xml:"electric"`
