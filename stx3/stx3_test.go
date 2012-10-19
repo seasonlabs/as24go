@@ -25,7 +25,7 @@ const testInput = `
         <body_colorgroup>Blanco</body_colorgroup>
         <interior_color/>
         <covering/>
-        <doors>5</doors>
+        <doors></doors>
         <gear_type>Automático</gear_type>
         <fuel_type>Diésel</fuel_type>
         <fuel_types>
@@ -165,7 +165,10 @@ const testInput = `
 </stx3>`
 
 func TestDecoding(t *testing.T) {
-	decoded, _ := NewStx3([]byte(testInput))
+	decoded, err := NewStx3([]byte(testInput))
+	if err != nil {
+		t.Fatalf("Not parsed: %v", err)
+	}
 
 	if reflect.TypeOf(decoded.VehicleData.Vehicles.Vehicle[0].Doors).Name() == "int" {
 		t.Log("Doors is int and 5")
